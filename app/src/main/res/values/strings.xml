@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Back4AppExample</string>
+
+
+    <string name="back4app_server_url" translatable="false">https://parseapi.back4app.com/</string>
+    <string name="back4app_app_id" translatable="false">A6DCgXHHCafMOrykD0Ya8RWMMpHI3f8nlk5vL43W</string>
+    <string name="back4app_client_key" translatable="false">EAaDWqDAd7Mk6o5CJBqL4PKvmZVjdr1RZgLIi5dz</string>
+
+</resources>
