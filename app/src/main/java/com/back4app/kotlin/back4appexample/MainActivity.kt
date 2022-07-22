@@ -2,6 +2,7 @@ package com.back4app.kotlin.back4appexample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Message
 import android.util.Log
 import android.widget.TextView
 import com.back4app.kotlin.back4appexample.databinding.ActivityMainBinding
@@ -10,10 +11,15 @@ import com.parse.ParseObject
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import okhttp3.Credentials
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Header
+import retrofit2.http.Headers
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,32 +28,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupBinding()
-        //setContentView(R.layout.activity_main)
+
+//        val parse = Parse.initialize(
+//            Parse.Configuration.Builder(this)
+//                .applicationId(getString(R.string.back4app_app_id))
+//                .clientKey(getString(R.string.back4app_client_key))
+//                .server(getString(R.string.back4app_server_url))
+//                .build()
+//        );
+//        Log.d("Auf", "$parse")
+
+
 
         val someApi = RetrofitHelper.getInstance().create(SomeApi::class.java)
 
         // запуск нової coroutine
         MainScope().launch {
             val result = someApi.getResponseItem()
-            Log.d("ayush: ", result.body()?.count.toString())
-            delay(5000)
-            binding.result.text = result.body()?.count.toString()
-        val textView = findViewById<TextView>(R.id.textView)
-
-//        val firstObject = ParseObject("FirstClass")
-//        firstObject.put("message","Hey ! First message from android. Parse is now connected")
-//        firstObject.saveInBackground {
-//            if (it != null){
-//                it.localizedMessage?.let { message -> Log.e("MainActivity", message) }
-//            }else{
-//                Log.d("MainActivity","Object saved.")
-//                textView.text = String.format("Object saved. %s", firstObject.get("message"))
-//            }
-//        }
-
-        textView.text = String.format("Object saved. %s", firstObject.("message"))
-
-
+            binding.textView.text = result.toString()
 
         }
     }
@@ -60,11 +58,23 @@ class MainActivity : AppCompatActivity() {
 
 object RetrofitHelper {
 
-    private const val baseUrl = "https://polyglotte-lycra.ondigitalocean.app"
+    private const val baseUrl = "https://parseapi.back4app.com/"
 
     fun getInstance(): Retrofit {
+
+
+
         return Retrofit.Builder().baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
+            .client(OkHttpClient.Builder().addInterceptor { chain ->
+                val request = chain
+                    .request()
+                    .newBuilder()
+                    .addHeader("client_key", "EAaDWqDAd7Mk6o5CJBqL4PKvmZVjdr1RZgLIi5dz")
+                    .addHeader("app_id", "A6DCgXHHCafMOrykD0Ya8RWMMpHI3f8nlk5vL43W")
+                    .build()
+                chain.proceed(request)
+            }.build())
             // we need to add converter factory to
             // convert JSON object to Java object
             .build()
@@ -72,9 +82,11 @@ object RetrofitHelper {
 }
 
 interface SomeApi {
+    //@Headers("client_key: EAaDWqDAd7Mk6o5CJBqL4PKvmZVjdr1RZgLIi5dz", "application_id: A6DCgXHHCafMOrykD0Ya8RWMMpHI3f8nlk5vL43W",  )
     @GET("/")
     suspend fun getResponseItem(): Response<FirstClass>
 }
 
 data class FirstClass(
-    val count: Int)
+    val message: String
+)
