@@ -1,4 +1,4 @@
-package com.back4app.kotlin.back4appexample
+package com.life_manager.kotlin.life_manager
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

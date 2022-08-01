@@ -1,12 +1,13 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'androidx.navigation.safeargs'
     //apply plugin: 'kotlin-kapt'
 }
 
 android {
     defaultConfig {
-        applicationId "com.back4app.kotlin.back4appexample"
+        applicationId 'com.life_manager.kotlin.life_manager'
         minSdk 28
         targetSdk 32
         versionCode 1
@@ -54,8 +55,10 @@ dependencies {
     implementation 'com.github.parse-community.Parse-SDK-Android:parse:4.0.0'
 
     // Navigation component
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.0")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.0")
+    def nav_version = '2.5.1'
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    //implementation("androidx.legacy:legacy-support-v4:$nav_version") Чомусь крашиться
 
     //coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'

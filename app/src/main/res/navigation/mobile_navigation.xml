@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/homeFragment">
+    <!-- Пункти призначення та дії, що їх пов'язують (action)
+    У кожного Navigation має бути свій host - прив'язка до актівіті.
+    У кожної актівіті має бути свій такий файл-->
+    <fragment
+        android:id="@+id/carsFragment"
+        android:name="com.life_manager.kotlin.life_manager.CarsFragment"
+        android:label="@string/cars"
+        tools:layout="@layout/fragment_cars" />
+    <fragment
+        android:id="@+id/cryptoFragment"
+        android:name="com.life_manager.kotlin.life_manager.CryptoFragment"
+        android:label="@string/crypto"
+        tools:layout="@layout/fragment_crypto" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.life_manager.kotlin.life_manager.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/sportsFragment"
+        android:name="com.life_manager.kotlin.life_manager.SportsFragment"
+        android:label="@string/sports"
+        tools:layout="@layout/fragment_sports" />
+    <fragment
+        android:id="@+id/stocksFragment"
+        android:name="com.life_manager.kotlin.life_manager.StocksFragment"
+        android:label="@string/stocks"
+        tools:layout="@layout/fragment_stocks" />
+
+</navigation>

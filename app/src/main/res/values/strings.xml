@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">Back4AppExample</string>
-
-
-    <string name="back4app_server_url" translatable="false">https://parseapi.back4app.com/</string>
-    <string name="back4app_app_id" translatable="false">A6DCgXHHCafMOrykD0Ya8RWMMpHI3f8nlk5vL43W</string>
-    <string name="back4app_client_key" translatable="false">EAaDWqDAd7Mk6o5CJBqL4PKvmZVjdr1RZgLIi5dz</string>
+    <string name="app_name">Life Manager</string>
+    <string name="cars">Cars</string>
+    <string name="crypto">Crypto</string>
+    <string name="home">Home</string>
+    <string name="sports">Sports</string>
+    <string name="stocks">Stocks</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
