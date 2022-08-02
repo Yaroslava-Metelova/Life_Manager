@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/carsFragment"
+        android:orderInCategory="100"
+        android:title="@string/cars"/>
+    <item
+        android:id="@+id/cryptoFragment"
+        android:orderInCategory="100"
+        android:title="@string/crypto"/>
+    <item
+        android:id="@+id/homeFragment"
+        android:orderInCategory="100"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/sportsFragment"
+        android:orderInCategory="100"
+        android:title="@string/sports"/>
+    <item
+        android:id="@+id/stocksFragment"
+        android:orderInCategory="100"
+        android:title="@string/stocks"/>
+</menu>
