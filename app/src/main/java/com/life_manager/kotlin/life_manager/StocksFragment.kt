@@ -9,6 +9,7 @@ import android.view.ViewGroup
 class StocksFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        activity?.setTitle(R.string.stocks)
         return inflater.inflate(R.layout.fragment_stocks, container, false)
     }
 }

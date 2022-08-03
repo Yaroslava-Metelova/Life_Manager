@@ -12,6 +12,7 @@ class CarsFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        activity?.setTitle(R.string.cars)
         return inflater.inflate(R.layout.fragment_cars, container, false)
     }
 

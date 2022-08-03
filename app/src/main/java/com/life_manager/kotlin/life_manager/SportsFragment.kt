@@ -9,6 +9,7 @@ import android.view.ViewGroup
 class SportsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        activity?.setTitle(R.string.sports)
         return inflater.inflate(R.layout.fragment_sports, container, false)
     }
 }

@@ -1,24 +1,5 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id = "@+id/carsFragment"
-        android:icon="@drawable/ic_navigation_cars"
-        android:title="@string/cars" />
-    <item
-        android:id = "@+id/cryptoFragment"
-        android:icon="@drawable/ic_navigation_crypto"
-        android:title="@string/crypto" />
-    <item
-        android:id = "@+id/homeFragment"
-        android:icon="@drawable/ic_navigation_home"
-        android:title="@string/home" />
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <item
-        android:id = "@+id/sportsFragment"
-        android:icon="@drawable/ic_navigation_sports"
-        android:title="@string/sports" />
-    <item
-        android:id = "@+id/stocksFragment"
-        android:icon="@drawable/ic_navigation_stocks"
-        android:title="@string/stocks" />
 </menu>

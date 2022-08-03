@@ -11,6 +11,7 @@ import android.view.ViewGroup
 class CryptoFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        activity?.setTitle(R.string.crypto)
         return inflater.inflate(R.layout.fragment_crypto, container, false)
     }
 }

@@ -7,14 +7,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.life_manager.kotlin.life_manager.databinding.ActivityMainBinding
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -28,11 +27,38 @@ import retrofit2.http.GET
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
+    private val menuItems = listOf<com.life_manager.kotlin.life_manager.MenuItem>(
+        MenuItem(
+            label = R.string.cars,
+            image = R.drawable.ic_navigation_cars,
+            destinationID = R.id.carsFragment
+        ),
+        MenuItem(
+            label = R.string.crypto,
+            image = R.drawable.ic_navigation_crypto,
+            destinationID = R.id.cryptoFragment
+        ),
+        MenuItem(
+            label = R.string.home,
+            image = R.drawable.ic_navigation_home,
+            destinationID = R.id.homeFragment
+        ),
+        MenuItem(
+            label = R.string.sports,
+            image = R.drawable.ic_navigation_sports,
+            destinationID = R.id.sportsFragment
+        ),
+        MenuItem(
+            label = R.string.stocks,
+            image = R.drawable.ic_navigation_stocks,
+            destinationID = R.id.stocksFragment
+        )
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupBinding()
+        setMenuItems()
 
         val someApi = RetrofitHelper.getInstance().create(SomeApi::class.java)
 
@@ -42,24 +68,27 @@ class MainActivity : AppCompatActivity() {
 //            binding.textView.text = result.toString()
 //        }
 
-        val navController = binding.navHostFragment.getFragment<NavHostFragment>().navController
-        val navView: BottomNavigationView = binding.bottomNav
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.carsFragment,
-                R.id.cryptoFragment,
-                R.id.homeFragment,
-                R.id.sportsFragment,
-                R.id.stocksFragment
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+
     }
 
     private fun setupBinding() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
+
+    private fun setMenuItems(){
+        menuItems.forEachIndexed { index, menuItem ->
+            binding.bottomNav.menu.add(R.menu.menu_navigation, menuItem.destinationID, index, menuItem.label)
+                .setIcon(menuItem.image)
+        }
+
+        val navController = supportFragmentManager.findFragmentById(R.id.nav_host_fragment)?.findNavController()
+
+        if (navController != null) {
+            binding.bottomNav.setupWithNavController(navController)
+        }
+
+
     }
 
     // три крапки справа вгорі
@@ -78,13 +107,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(
             Navigation.findNavController(this, R.id.nav_host_fragment), AppBarConfiguration(
-                setOf(
-                    R.id.carsFragment,
-                    R.id.cryptoFragment,
-                    R.id.homeFragment,
-                    R.id.sportsFragment,
-                    R.id.stocksFragment
-                )
+                menuItems.map{ it.destinationID}.toMutableSet()
             )
         )
     }
@@ -108,6 +131,12 @@ object RetrofitHelper {
             .build()
     }
 }
+
+data class MenuItem(
+    val label: Int,
+    val image: Int,
+    val destinationID: Int
+)
 
 interface SomeApi {
     @GET("/")
